@@ -21,6 +21,7 @@ public class InputController : MonoBehaviour {
 			int tmpC = Input.touchCount;
 			tmpC--;
 
+
 			if (Input.GetTouch(tmpC).phase == TouchPhase.Began)
 			{
 				handlerInteraction(true);

@@ -24,6 +24,7 @@ public class LevelCreator : MonoBehaviour {
 	private float startTime;
 
 	private bool enemyAdded = false;
+	//private bool blobAdded = false;
 	private bool playerDead = false;
 
 	void Awake()
@@ -53,14 +54,22 @@ public class LevelCreator : MonoBehaviour {
 			GameObject tmpG4 = Instantiate(Resources.Load("blank", typeof(GameObject))) as GameObject;
 			tmpG4.transform.parent = collectedTiles.transform.FindChild("gBlank").transform;
 			tmpG4.transform.position = Vector2.zero;
-
 		}
+	
 
 		for (int i = 0; i <10; i++ )
 		{
 			GameObject tmpG5 = Instantiate(Resources.Load("enemy", typeof(GameObject))) as GameObject;
 			tmpG5.transform.parent = collectedTiles.transform.FindChild("killers").transform;
 			tmpG5.transform.position = Vector2.zero;
+		}
+
+		for (int i = 0; i <5; i++ )
+		{
+			GameObject tmpG6 = Instantiate(Resources.Load("BlobJr", typeof(GameObject))) as GameObject;
+			tmpG6.SetActive(false);
+			tmpG6.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+			tmpG6.transform.position = Vector2.zero;
 		}
 
 
@@ -110,6 +119,11 @@ public class LevelCreator : MonoBehaviour {
 				case "enemy(Clone)":
 					child.gameObject.transform.position = collectedTiles.transform.FindChild("killers").transform.position;
 					child.gameObject.transform.parent = collectedTiles.transform.FindChild("killers").transform;
+					break;
+				case "BlobJr(Clone)":
+					child.gameObject.SetActive(false);
+					child.gameObject.transform.position = collectedTiles.transform.FindChild("blobJr").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
 					break;
 				case "Reward":
 					GameObject.Find ("Reward").GetComponent<crateScript>().inPlay = false;
@@ -182,6 +196,7 @@ public class LevelCreator : MonoBehaviour {
 		}
 		enemyAdded = false;
 
+
 		if (lastTile == "blank")
 		{
 			changeHeight();
@@ -190,10 +205,12 @@ public class LevelCreator : MonoBehaviour {
 		} else if (lastTile =="right") 
 		{
 			this.GetComponent<ScoreController>().Points ++;  //add points
-			blankCounter = (int)Random.Range(1,3); //min and max gap beetween platforms
+			blankCounter = (int)Random.Range(1,4); //min and max gap beetween platforms
 		} else if(lastTile =="middle")
 		{ 
+			randomizeBlob();
 			setTile("right");
+			//blobAdded = false;
 		} 
 	}
 
@@ -220,6 +237,22 @@ public class LevelCreator : MonoBehaviour {
 			enemyAdded = true;
 		}
 
+	}
+
+	private void randomizeBlob()
+	{
+		//if (blobAdded) return;
+		
+		if ((int)Random.Range(0,3) == 1 )  // "sorteio 33%
+		{
+			GameObject newBlob = collectedTiles.transform.FindChild ("blobJr").transform.GetChild (0).gameObject;  //find the enemy in BlobJr
+			newBlob.transform.parent = gameLayer.transform;
+			
+			newBlob.transform.position = new Vector2(tilePos.transform.position.x+tileWidth, startUpPosY + (heightLevel* tileWidth));  //spawn at the ground
+			newBlob.SetActive(true);
+			//blobAdded = true;
+		}
+		
 	}
 
 	public void killPlayer ()

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update() { 
 
+		/*
 		if (!inAir && Mathf.Abs(rb.velocity.y) > 0.05f )  //abs handles negative y - falling down
 		{
 			_animator.SetBool("Jump", true);
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour {
 			inAir = false;
 			if (jumpPress) jump(); 
 		}
+
+		*/
 
 		//int nbTouches = Input.touchCount;
 		//float move = Input.GetAxis ("Vertical");
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 	public void jump()
 	{
 		jumpPress = true;
-		if (inAir) return;
+		//if (inAir) return;
 		rb.AddForce(Vector2.up * thrust); //else: jump
 		GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("jump");  //play a sound
 	}
@@ -65,5 +68,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		Debug.Log ("Scale Player");
 	}
+
+	public void OnClickButton()
+	{
+		Debug.Log ("Clicou em: "+ this.name);
+	}
+
+
 
 	}
