@@ -18,34 +18,34 @@ public class InputController : MonoBehaviour {
 	void Update () {
 		if (isMobile)
 		{
-			int tmpC = Input.touchCount;
-			tmpC--;
-
-
-			if (Input.GetTouch(tmpC).phase == TouchPhase.Began)
-			{
-				handlerInteraction(true);
-			}
-
-			if (Input.GetTouch(tmpC).phase == TouchPhase.Ended)
-			{
-				handlerInteraction(false);
-			}
+//			int tmpC = Input.touchCount;
+//			tmpC--;
+//
+//
+//			if (Input.GetTouch(tmpC).phase == TouchPhase.Began)
+//			{
+//				handlerInteraction(true);
+//			}
+//
+//			if (Input.GetTouch(tmpC).phase == TouchPhase.Ended)
+//			{
+//				handlerInteraction(false);
+//			}
 		}
 		else   //in editor
 		{
-			if (Input.GetMouseButtonDown(0)){  //left mouse
-				handlerInteraction(true);
-			}
-
-			if (Input.GetMouseButtonUp(0)){  //left mouse
-				handlerInteraction(false);
-			}
+//			if (Input.GetMouseButtonDown(0)){  //left mouse
+//				handlerInteraction(true);
+//			}
+//
+//			if (Input.GetMouseButtonUp(0)){  //left mouse
+//				handlerInteraction(false);
+//			}
 		}
 
 	}
 
-	void handlerInteraction(bool starting)
+	public void handlerInteraction(bool starting)
 	{
 		if (starting)
 		{

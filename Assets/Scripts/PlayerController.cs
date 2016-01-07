@@ -68,12 +68,5 @@ public class PlayerController : MonoBehaviour {
 	{
 		Debug.Log ("Scale Player");
 	}
-
-	public void OnClickButton()
-	{
-		Debug.Log ("Clicou em: "+ this.name);
-	}
-
-
-
+	
 	}
