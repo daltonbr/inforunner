@@ -9,6 +9,8 @@ public class Blob : MonoBehaviour {
 	Transform myTrans;
 	float myWidth;
 
+	public PlayerController _playerController;
+
 	// Use this for initialization
 	void Start () {
 		myTrans = this.transform;
@@ -16,7 +18,13 @@ public class Blob : MonoBehaviour {
 		myWidth = this.GetComponent<SpriteRenderer>().bounds.extents.x;  //get the width of the sprite
 
 	}
-	
+
+	// Use this for initialization
+	void Awake () {
+		_playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+	}
+
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		// Always move forward (left)
@@ -28,5 +36,13 @@ public class Blob : MonoBehaviour {
 		myVel.x = -myTrans.right.x * speed;
 		myBody.velocity = myVel;
 		
+	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			_playerController.Die();
+		}
 	}
 }

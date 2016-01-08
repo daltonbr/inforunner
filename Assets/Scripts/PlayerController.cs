@@ -64,6 +64,18 @@ public class PlayerController : MonoBehaviour {
 		GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("jump");  //play a sound
 	}
 
+	public void Die() {
+		GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("die");  //play a sound
+		
+		//_playerCOntroller.ScalePlayer();  // simulating a z axis movement
+		
+		this.GetComponent<Rigidbody2D>().AddForce(Vector2.right*1000); //"die animation" in the player
+		this.GetComponent<Rigidbody2D>().AddForce(Vector2.up*2000);
+		
+		// play with scale of the player to give a sensation of moving in z axis
+		this.GetComponent<Collider2D>().enabled = false;  // disable the collider in order to sink the player
+	}
+
 	public void ScalePlayer()
 	{
 		Debug.Log ("Scale Player");
