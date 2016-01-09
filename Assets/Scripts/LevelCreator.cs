@@ -4,7 +4,6 @@ using System.Collections;
 public class LevelCreator : MonoBehaviour {
 
 	public GameObject tilePos;
-    public GameObject startWindow;
 
 	private float startUpPosY;
 	private const float tileWidth = 1.0f;
@@ -16,9 +15,6 @@ public class LevelCreator : MonoBehaviour {
 	private GameObject bgLayer;   // bg not used yet
 	private GameObject _player;
 
-    /// <summary>Camera animator</summary>
-    private Animator animator;
-
 	public float gameSpeed = 4.0f;
 	private float parallaxSpeed = 4.0f;
 	private float outOfBounceX;
@@ -27,15 +23,6 @@ public class LevelCreator : MonoBehaviour {
 	private int middleCounter = 0;
 	private string lastTile = "right";
 	private float startTime;
-    /// <summary>
-    /// Tells if game is currently in pre-start mode
-    /// where it displays game logo and waits for a touch
-    /// </summary>
-    private bool isIdle;
-    /// <summary>
-    /// The time scale used by the game, this is auto-assigned.
-    /// </summary>
-    private float gameTimeScale;
 
 	private bool enemyAdded = false;
 	//private bool blobAdded = false;
@@ -44,17 +31,11 @@ public class LevelCreator : MonoBehaviour {
 	void Awake()
 	{
 		Application.targetFrameRate = 60;
-        this.animator = gameObject.GetComponent<Animator>();
 	}
 
 	
 	// Use this for initialization
 	void Start () {
-        this.startWindow.SetActive(true);
-        this.gameTimeScale = Time.timeScale;
-        Time.timeScale = 0.0f;
-        this.isIdle = true;
-
         gameLayer = GameObject.Find("gameLayer");
 		bgLayer = GameObject.Find("backgroundLayer");
 		collectedTiles = GameObject.Find("tiles");
@@ -102,29 +83,7 @@ public class LevelCreator : MonoBehaviour {
 		startTime = Time.time;
 		collectedTiles.transform.position = new Vector2(-60.0f, -20.0f);
 	}
-	
-    // Update is called once per frame
-	void Update()
-    {
-        // Check if the game is not started
-        if (this.isIdle)
-        {
-            // When player touches the screen to start.
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonUp(0))
-            {
-                this.animator.SetTrigger("GameStart");
-            }
-        }
-    }
 
-    void OnGameStart()
-    {
-        this.animator.SetBool("Started", true);
-        isIdle = false;
-        this.startWindow.SetActive(false);
-        Time.timeScale = this.gameTimeScale;
-    }
-    
 	void FixedUpdate () {
 
 		if (startTime - Time.time % 5 == 0)   // timer 5 em 5s

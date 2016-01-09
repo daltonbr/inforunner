@@ -1349,6 +1349,7 @@ GameObject:
   - 114: {fileID: 1064365428}
   - 114: {fileID: 1064365433}
   - 95: {fileID: 1064365434}
+  - 114: {fileID: 1064365435}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1435,7 +1436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePos: {fileID: 0}
-  startWindow: {fileID: 1610616389}
   gameSpeed: 4
   outOfBounceY: -20
 --- !u!114 &1064365426
@@ -1779,6 +1779,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1064365435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1064365419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f93e58ffeb36d4890a34ad2436fed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWindow: {fileID: 1610616389}
+  enableOnStart:
+  - {fileID: 184973400}
+  - {fileID: 747713226}
+  - {fileID: 536970858}
 --- !u!1 &1067601609
 GameObject:
   m_ObjectHideFlags: 0
