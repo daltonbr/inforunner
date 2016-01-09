@@ -1435,6 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePos: {fileID: 0}
+  startWindow: {fileID: 1610616389}
   gameSpeed: 4
   outOfBounceY: -20
 --- !u!114 &1064365426
