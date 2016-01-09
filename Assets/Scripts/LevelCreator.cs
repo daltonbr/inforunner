@@ -22,6 +22,11 @@ public class LevelCreator : MonoBehaviour {
 	private int middleCounter = 0;
 	private string lastTile = "right";
 	private float startTime;
+    /// <summary>
+    /// Tells if game is currently in pre-start mode
+    /// where it displays game logo and waits for a touch
+    /// </summary>
+    private bool isIdle;
 
 	private bool enemyAdded = false;
 	//private bool blobAdded = false;
@@ -35,7 +40,10 @@ public class LevelCreator : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		gameLayer = GameObject.Find("gameLayer");
+        Time.timeScale = 0.0f;
+        this.isIdle = true;
+
+        gameLayer = GameObject.Find("gameLayer");
 		bgLayer = GameObject.Find("backgroundLayer");
 		collectedTiles = GameObject.Find("tiles");
 		_player = GameObject.Find("Player");
