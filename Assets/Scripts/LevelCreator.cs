@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelCreator : MonoBehaviour {
 
 	public GameObject tilePos;
+
 	private float startUpPosY;
 	private const float tileWidth = 1.0f;
 	private int heightLevel = 0;
@@ -35,7 +36,7 @@ public class LevelCreator : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		gameLayer = GameObject.Find("gameLayer");
+        gameLayer = GameObject.Find("gameLayer");
 		bgLayer = GameObject.Find("backgroundLayer");
 		collectedTiles = GameObject.Find("tiles");
 		_player = GameObject.Find("Player");
@@ -82,8 +83,7 @@ public class LevelCreator : MonoBehaviour {
 		startTime = Time.time;
 		collectedTiles.transform.position = new Vector2(-60.0f, -20.0f);
 	}
-	
-	// Update is called once per frame
+
 	void FixedUpdate () {
 
 		if (startTime - Time.time % 5 == 0)   // timer 5 em 5s
