@@ -7,19 +7,25 @@ public class PlayerController : MonoBehaviour {
 	public Rigidbody2D rb;
 	public float thrust = 6000;
 	Animator _animator;
+	Animator _attackAnimator;
+
+	public GameObject attackAnim;
 	int jumpHash = Animator.StringToHash("Jump");
 	int runStateHash = Animator.StringToHash("Base Layer.Walk");
+	public float attackCoolDown = 0.5f;
 
 	private bool inAir = false;
 	public bool jumpPress = false;
+	bool isAttacking = false;
 
 	//private int _animState = Animator.StringToHash("animState");
 
 	//public float speed = 0.1F;
 
-	void Start () {
+	void Awake () {
 		rb = Player.GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
+		_attackAnimator = attackAnim.GetComponent<Animator>();
 	}
 
 	void Update() { 
@@ -74,6 +80,23 @@ public class PlayerController : MonoBehaviour {
 		
 		// play with scale of the player to give a sensation of moving in z axis
 		this.GetComponent<Collider2D>().enabled = false;  // disable the collider in order to sink the player
+	}
+
+	public void Attack()
+	{	
+		if (isAttacking)
+		{
+			isAttacking = false;
+			attackAnim.SetActive(false);
+
+		}
+		else  //attack
+		{
+			isAttacking = true;
+			attackAnim.SetActive(true);
+			AnimatorStateInfo attackStateInfo = _attackAnimator.GetCurrentAnimatorStateInfo(0);  //0 is the base layer of the animator
+			Debug.Log ("Player Attacks!");
+		}
 	}
 
 	public void ScalePlayer()
