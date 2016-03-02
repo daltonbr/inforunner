@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LevelCreator : MonoBehaviour {
 
@@ -12,11 +13,11 @@ public class LevelCreator : MonoBehaviour {
 
 	private GameObject collectedTiles;
 	private GameObject gameLayer;
-	private GameObject bgLayer;   // bg not used yet
+//	private GameObject bgLayer;   // bg not used yet
 	private GameObject _player;
 
 	public float gameSpeed = 4.0f;
-	private float parallaxSpeed = 4.0f;
+//	private float parallaxSpeed = 4.0f;
 	private float outOfBounceX;
 	public float outOfBounceY = -20.0f;
 	private int blankCounter = 0;
@@ -37,7 +38,7 @@ public class LevelCreator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameLayer = GameObject.Find("gameLayer");
-		bgLayer = GameObject.Find("backgroundLayer");
+//		bgLayer = GameObject.Find("backgroundLayer");
 		collectedTiles = GameObject.Find("tiles");
 		_player = GameObject.Find("Player");
 
@@ -265,7 +266,14 @@ public class LevelCreator : MonoBehaviour {
 		Invoke("reloadScene", 1); //1 sec delay
 	}
 
-	public void reloadScene(){
-		Application.LoadLevel(0);
+	public void reloadScene()
+	{
+		//Application.LoadLevel(0);   // ** deprecated **
+
+		// get the current scene name 
+		string sceneName = SceneManager.GetActiveScene().name;
+
+		// load the same scene
+		SceneManager.LoadScene(sceneName,LoadSceneMode.Single);
 	}
 }

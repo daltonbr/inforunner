@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Collider2D attackTrigger;
 
-	private bool inAir = false;
+//	private bool inAir = false;
 	public bool jumpPress = false;
 	bool isAttacking = false;
 

@@ -7,7 +7,7 @@ public class ScoreController : MonoBehaviour {
 	private int _bestScore = 0;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		_bestScore = getHighScoreFromDb();
 	}
 	
