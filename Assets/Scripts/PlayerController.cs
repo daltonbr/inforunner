@@ -6,15 +6,15 @@ public class PlayerController : MonoBehaviour {
 	public GameObject Player;
 	private Rigidbody2D rb;
 	public float thrust = 6000;
-	Animator _animator;
+//	Animator _animator;
 	Animator _attackAnimator;
 
 	public GameObject attackAnim;
-	int jumpHash = Animator.StringToHash("Jump");
-	int runStateHash = Animator.StringToHash("Base Layer.Walk");
+//	int jumpHash = Animator.StringToHash("Jump");
+//	int runStateHash = Animator.StringToHash("Base Layer.Walk");
 
-	public float attackCoolDown = 0.3f;
-	public float attackTimer = 0.3f;
+	public float attackCoolDown;
+	public float attackTimer;
 
 	public Collider2D attackTrigger;
 
@@ -22,15 +22,19 @@ public class PlayerController : MonoBehaviour {
 	public bool jumpPress = false;
 	bool isAttacking = false;
 
-	//private int _animState = Animator.StringToHash("animState");
-
-	//public float speed = 0.1F;
+	//private int _animState = Animator.StringToHash("scratchAnimation");
 
 	void Awake () {
-		rb = Player.GetComponent<Rigidbody2D>();
-		_animator = GetComponent<Animator>();
-		_attackAnimator = attackAnim.GetComponent<Animator>();
 		attackTrigger.enabled = false;
+		rb = Player.GetComponent<Rigidbody2D>();
+//		_animator = GetComponent<Animator>();
+		_attackAnimator = attackAnim.GetComponent<Animator>();
+
+		// get the length of the Scratch Animation and set the cooldown
+		AnimatorStateInfo state = _attackAnimator.GetCurrentAnimatorStateInfo( 0 );
+		float scratchLength = state.length;
+		// Debug.Log(scratchLength);
+		attackCoolDown = scratchLength;
 	}
 
 	void Update()
@@ -72,7 +76,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void Attack()
 	{	
-
 		if (!isAttacking )
 		{
 			isAttacking = true;
@@ -80,7 +83,6 @@ public class PlayerController : MonoBehaviour {
 			attackTrigger.enabled = true;  // enables the collider2D
 			_attackAnimator.SetBool("isAttacking", true);
 		}
-
 	}
 
 	public void ScalePlayer()

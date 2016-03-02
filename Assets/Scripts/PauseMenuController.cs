@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour {
 	
@@ -34,7 +35,14 @@ public class PauseMenuController : MonoBehaviour {
 	}
 
 	public void RestartLevel() {
-		Application.LoadLevel(Application.loadedLevel);
+		//Application.LoadLevel(Application.loadedLevel);  // ** deprecated
+
+		// get the current scene name 
+		string sceneName = SceneManager.GetActiveScene().name;
+
+		// load the same scene
+		SceneManager.LoadScene(sceneName,LoadSceneMode.Single);
+
 		Unpause();
 	}
 
