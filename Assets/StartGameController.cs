@@ -5,6 +5,7 @@ public class StartGameController : MonoBehaviour
 {
 
     public GameObject startWindow;
+	public GameObject scorePanel;
     public GameObject[] enableOnStart;
 
     /// <summary>Camera animator</summary>
@@ -49,6 +50,7 @@ public class StartGameController : MonoBehaviour
             {
                 this.startWindow.SetActive(false);
                 this.animator.SetTrigger("GameStart");
+				scorePanel.SetActive(true);
             }
         }
     }

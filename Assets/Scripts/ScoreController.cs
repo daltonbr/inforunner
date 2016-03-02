@@ -1,29 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour {
 
 	private int _score = 0;
 	private int _bestScore = 0;
 
+	public Text scoreLabel;
+	public Text highScoreLabel;
+
 	// Use this for initialization
 	void Awake () {
 		_bestScore = getHighScoreFromDb();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+		
 	void OnGUI(){
-		GUI.color = Color.white;
-		GUIStyle _style = GUI.skin.GetStyle("Label");
-		_style.alignment = TextAnchor.UpperLeft;
-		_style.fontSize = 20;
-		GUI.Label(new Rect (20,20,200,200), _score.ToString(),_style);
-		_style.alignment = TextAnchor.UpperRight;
-		GUI.Label(new Rect (Screen.width - 220,20,200,200), "Highscore: "+ _bestScore.ToString(), _style);
+		//GUI.color = Color.white;
+		//GUIStyle _style = GUI.skin.GetStyle("Label");
+		//_style.alignment = TextAnchor.UpperLeft;
+		//_style.fontSize = 20;
+		//GUI.Label(new Rect (20,20,200,200), _score.ToString(),_style);
+		//_style.alignment = TextAnchor.UpperRight;
+		//GUI.Label(new Rect (Screen.width - 220,20,200,200), "Highscore: "+ _bestScore.ToString(), _style);
+		scoreLabel.text = _score.ToString();
+		highScoreLabel.text = "Highscore: "+ _bestScore.ToString();
 	}
 
 	public int Points{
