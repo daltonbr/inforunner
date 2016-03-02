@@ -4,10 +4,12 @@ using System.Collections;
 public class PlaySound : MonoBehaviour {
 
 	private AudioSource[] _audioSource;
+	bool isMute;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		_audioSource = this.GetComponents<AudioSource> ();
+	//	_audioListener = this.GetComponent<AudioListener> ();
 	}
 	
 	// Update is called once per frame
@@ -32,5 +34,11 @@ public class PlaySound : MonoBehaviour {
 
 
 		}
+	}
+		
+	public void Mute ()
+	{
+		isMute = ! isMute;
+		AudioListener.volume = isMute ? 0 : 1;  //AudioListener is static
 	}
 }
