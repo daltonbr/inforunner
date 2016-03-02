@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour {
 			attackTimer = attackCoolDown;
 			attackTrigger.enabled = true;  // enables the collider2D
 			_attackAnimator.SetBool("isAttacking", true);
+
+			GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("scratch");  //play a sound	
 		}
 	}
 

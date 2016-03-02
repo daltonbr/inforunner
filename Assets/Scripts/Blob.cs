@@ -54,6 +54,7 @@ public class Blob : MonoBehaviour {
 		this.gameObject.SetActive(false);
 		this.gameObject.transform.position = collectedTiles.transform.FindChild("blobJr").transform.position;
 		this.gameObject.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+		GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("blobDie");  //play a sound
 
 		//playsounds
 		//flip

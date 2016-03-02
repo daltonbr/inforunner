@@ -31,7 +31,12 @@ public class PlaySound : MonoBehaviour {
 		case "error":
 			_audioSource[3].Play ();
 			break;
-
+		case "scratch":
+			_audioSource[4].Play ();
+			break;
+		case "blobDie":
+			_audioSource[5].Play ();
+			break;
 
 		}
 	}

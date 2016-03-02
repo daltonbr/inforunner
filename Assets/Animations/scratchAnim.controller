@@ -82,8 +82,8 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: scratchAnimation
-  m_Speed: 5
-  m_CycleOffset: 1
+  m_Speed: 3
+  m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110157744}
   m_StateMachineBehaviours: []
@@ -146,4 +146,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 288, y: 144, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 110260310}
+  m_DefaultState: {fileID: 110291036}

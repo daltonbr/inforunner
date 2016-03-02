@@ -25,8 +25,7 @@ public class StartGameController : MonoBehaviour
     {
         this.animator = gameObject.GetComponent<Animator>();
     }
-
-    // Use this for initialization
+		
     void Start()
     {
         foreach (GameObject _gameObject in this.enableOnStart)
