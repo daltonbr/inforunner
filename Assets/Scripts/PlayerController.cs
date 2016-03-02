@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public GameObject Player;
-	public Rigidbody2D rb;
+	private Rigidbody2D rb;
 	public float thrust = 6000;
 	Animator _animator;
 	Animator _attackAnimator;
@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour {
 	public GameObject attackAnim;
 	int jumpHash = Animator.StringToHash("Jump");
 	int runStateHash = Animator.StringToHash("Base Layer.Walk");
-	public float attackCoolDown = 0.5f;
+
+	public float attackCoolDown = 0.3f;
+	public float attackTimer = 0.3f;
+
+	public Collider2D attackTrigger;
 
 	private bool inAir = false;
 	public bool jumpPress = false;
@@ -26,41 +30,25 @@ public class PlayerController : MonoBehaviour {
 		rb = Player.GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		_attackAnimator = attackAnim.GetComponent<Animator>();
+		attackTrigger.enabled = false;
 	}
 
-	void Update() { 
-
-		/*
-		if (!inAir && Mathf.Abs(rb.velocity.y) > 0.05f )  //abs handles negative y - falling down
+	void Update()
+	{ 
+		if (isAttacking)
 		{
-			_animator.SetBool("Jump", true);
-			inAir = true;
-		} else if (inAir && rb.velocity.y == 0.0f) 
-		{
-			_animator.SetBool("Jump", false);
-			inAir = false;
-			if (jumpPress) jump(); 
+			if (attackTimer > 0)
+			{
+				attackTimer -= Time.deltaTime;  //decreases the timer for the next attack]
+			}
+			else  // time to next
+			{
+				isAttacking = false;
+				attackTrigger.enabled = false;
+				_attackAnimator.SetBool("isAttacking", false);
+			}
 		}
-
-		*/
-
-		//int nbTouches = Input.touchCount;
-		//float move = Input.GetAxis ("Vertical");
-
-		AnimatorStateInfo stateinfo = _animator.GetCurrentAnimatorStateInfo(0);  //0 is the base layer of the animator
-		/*
-		if ( (Input.touchCount > 0) || (Input.GetKeyDown(KeyCode.Space)) ) { // && Input.GetTouch(0).phase == TouchPhase.Moved) {
-			//&& stateInfo.nameHash = runStateHash) //veifia 
-			jump ();
-			anim.SetBool("Jump", true); //ineficiente pq tem que evaluate a string, com hash id eh melhor
-			//anim.SetTrigger (jumpHash);
-
-		}
-		else {
-			anim.SetBool("Jump", false);
-		}
-		*/
-		}
+	}
 
 	public void jump()
 	{
@@ -84,19 +72,15 @@ public class PlayerController : MonoBehaviour {
 
 	public void Attack()
 	{	
-		if (isAttacking)
-		{
-			isAttacking = false;
-			attackAnim.SetActive(false);
 
-		}
-		else  //attack
+		if (!isAttacking )
 		{
 			isAttacking = true;
-			attackAnim.SetActive(true);
-			AnimatorStateInfo attackStateInfo = _attackAnimator.GetCurrentAnimatorStateInfo(0);  //0 is the base layer of the animator
-			Debug.Log ("Player Attacks!");
+			attackTimer = attackCoolDown;
+			attackTrigger.enabled = true;  // enables the collider2D
+			_attackAnimator.SetBool("isAttacking", true);
 		}
+
 	}
 
 	public void ScalePlayer()

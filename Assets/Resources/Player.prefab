@@ -37,7 +37,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &175676
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,10 +182,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 129924}
-  rb: {fileID: 0}
   thrust: 5000
   attackAnim: {fileID: 161366}
-  attackCoolDown: 0.5
+  attackHash: 0
+  notAttackingHash: 0
+  attackCoolDown: 0.3
+  attackTimer: 0.3
+  attackTrigger: {fileID: 6116618}
   jumpPress: 0
 --- !u!212 &21248878
 SpriteRenderer:

@@ -11,6 +11,8 @@ public class Blob : MonoBehaviour {
 
 	public PlayerController _playerController;
 
+	private GameObject collectedTiles;
+
 	// Use this for initialization
 	void Start () {
 		myTrans = this.transform;
@@ -22,6 +24,7 @@ public class Blob : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		_playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		collectedTiles = GameObject.Find("tiles");
 	}
 
 
@@ -44,5 +47,16 @@ public class Blob : MonoBehaviour {
 		{
 			_playerController.Die();
 		}
+	}
+
+	public void KillEnemy()
+	{
+		this.gameObject.SetActive(false);
+		this.gameObject.transform.position = collectedTiles.transform.FindChild("blobJr").transform.position;
+		this.gameObject.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+
+		//playsounds
+		//flip
+		//jump
 	}
 }
