@@ -52,8 +52,8 @@ public class Blob : MonoBehaviour {
 	public void KillEnemy()
 	{
 		this.gameObject.SetActive(false);
-		this.gameObject.transform.position = collectedTiles.transform.FindChild("blobJr").transform.position;
-		this.gameObject.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+		this.gameObject.transform.position = collectedTiles.transform.Find("blobJr").transform.position;
+		this.gameObject.transform.parent = collectedTiles.transform.Find("blobJr").transform;
 		GameObject.Find ("Main Camera").GetComponent<PlaySound>().PlayFX("blobDie");  //play a sound
 
 		//playsounds

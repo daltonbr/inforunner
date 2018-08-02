@@ -45,16 +45,16 @@ public class LevelCreator : MonoBehaviour {
 		for (int i = 0; i<30; i++ ) 
 		{
 			GameObject tmpG1 = Instantiate(Resources.Load("ground_left", typeof(GameObject))) as GameObject;
-			tmpG1.transform.parent = collectedTiles.transform.FindChild("gLeft").transform;
+			tmpG1.transform.parent = collectedTiles.transform.Find("gLeft").transform;
 			tmpG1.transform.position = Vector2.zero;
 			GameObject tmpG2 = Instantiate(Resources.Load("ground_middle", typeof(GameObject))) as GameObject;
-			tmpG2.transform.parent = collectedTiles.transform.FindChild("gMiddle").transform;
+			tmpG2.transform.parent = collectedTiles.transform.Find("gMiddle").transform;
 			tmpG2.transform.position = Vector2.zero;
 			GameObject tmpG3 = Instantiate(Resources.Load("ground_right", typeof(GameObject))) as GameObject;
-			tmpG3.transform.parent = collectedTiles.transform.FindChild("gRight").transform;
+			tmpG3.transform.parent = collectedTiles.transform.Find("gRight").transform;
 			tmpG3.transform.position = Vector2.zero;
 			GameObject tmpG4 = Instantiate(Resources.Load("blank", typeof(GameObject))) as GameObject;
-			tmpG4.transform.parent = collectedTiles.transform.FindChild("gBlank").transform;
+			tmpG4.transform.parent = collectedTiles.transform.Find("gBlank").transform;
 			tmpG4.transform.position = Vector2.zero;
 		}
 	
@@ -62,7 +62,7 @@ public class LevelCreator : MonoBehaviour {
 		for (int i = 0; i <10; i++ )
 		{
 			GameObject tmpG5 = Instantiate(Resources.Load("enemy", typeof(GameObject))) as GameObject;
-			tmpG5.transform.parent = collectedTiles.transform.FindChild("killers").transform;
+			tmpG5.transform.parent = collectedTiles.transform.Find("killers").transform;
 			tmpG5.transform.position = Vector2.zero;
 		}
 
@@ -70,7 +70,7 @@ public class LevelCreator : MonoBehaviour {
 		{
 			GameObject tmpG6 = Instantiate(Resources.Load("BlobJr", typeof(GameObject))) as GameObject;
 			tmpG6.SetActive(false);
-			tmpG6.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+			tmpG6.transform.parent = collectedTiles.transform.Find("blobJr").transform;
 			tmpG6.transform.position = Vector2.zero;
 		}
 
@@ -102,29 +102,29 @@ public class LevelCreator : MonoBehaviour {
 			{
 				switch (child.gameObject.name) {
 				case "ground_left(Clone)":
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("gLeft").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("gLeft").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("gLeft").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("gLeft").transform;
 					break;
 				case "ground_middle(Clone)":
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("gMiddle").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("gMiddle").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("gMiddle").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("gMiddle").transform;
 					break;
 				case "ground_right(Clone)":
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("gRight").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("gRight").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("gRight").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("gRight").transform;
 					break;
 				case "blank(Clone)":
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("gBlank").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("gBlank").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("gBlank").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("gBlank").transform;
 					break;
 				case "enemy(Clone)":
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("killers").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("killers").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("killers").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("killers").transform;
 					break;
 				case "BlobJr(Clone)":
 					child.gameObject.SetActive(false);
-					child.gameObject.transform.position = collectedTiles.transform.FindChild("blobJr").transform.position;
-					child.gameObject.transform.parent = collectedTiles.transform.FindChild("blobJr").transform;
+					child.gameObject.transform.position = collectedTiles.transform.Find("blobJr").transform.position;
+					child.gameObject.transform.parent = collectedTiles.transform.Find("blobJr").transform;
 					break;
 				case "Reward":
 					GameObject.Find ("Reward").GetComponent<crateScript>().inPlay = false;
@@ -156,16 +156,16 @@ public class LevelCreator : MonoBehaviour {
 	{
 		switch (type) {
 		case "left":
-			tmpTile = collectedTiles.transform.FindChild("gLeft").transform.GetChild(0).gameObject;
+			tmpTile = collectedTiles.transform.Find("gLeft").transform.GetChild(0).gameObject;
 			break;
 		case "right":
-			tmpTile = collectedTiles.transform.FindChild("gRight").transform.GetChild(0).gameObject;
+			tmpTile = collectedTiles.transform.Find("gRight").transform.GetChild(0).gameObject;
 			break;
 		case "middle":
-			tmpTile = collectedTiles.transform.FindChild("gMiddle").transform.GetChild(0).gameObject;
+			tmpTile = collectedTiles.transform.Find("gMiddle").transform.GetChild(0).gameObject;
 			break;
 		case "blank":
-			tmpTile = collectedTiles.transform.FindChild("gBlank").transform.GetChild(0).gameObject;
+			tmpTile = collectedTiles.transform.Find("gBlank").transform.GetChild(0).gameObject;
 			break;
 		default:
 			Debug.LogError("Tile inexistente");
@@ -231,7 +231,7 @@ public class LevelCreator : MonoBehaviour {
 
 		if ((int)Random.Range(0,4) == 1 )  // "sorteio 25%
 		{
-			GameObject newEnemy = collectedTiles.transform.FindChild ("killers").transform.GetChild (0).gameObject;  //find the enemy in killers
+			GameObject newEnemy = collectedTiles.transform.Find ("killers").transform.GetChild (0).gameObject;  //find the enemy in killers
 			newEnemy.transform.parent = gameLayer.transform;
 
 			newEnemy.transform.position = new Vector2(tilePos.transform.position.x+tileWidth, startUpPosY + (heightLevel* tileWidth));  //spawn at the ground
@@ -246,7 +246,7 @@ public class LevelCreator : MonoBehaviour {
 		
 		if ((int)Random.Range(0,3) == 1 )  // "sorteio 33%
 		{
-			GameObject newBlob = collectedTiles.transform.FindChild ("blobJr").transform.GetChild (0).gameObject;  //find the enemy in BlobJr
+			GameObject newBlob = collectedTiles.transform.Find ("blobJr").transform.GetChild (0).gameObject;  //find the enemy in BlobJr
 			newBlob.transform.parent = gameLayer.transform;
 			
 			newBlob.transform.position = new Vector2(tilePos.transform.position.x+tileWidth, startUpPosY + (heightLevel* tileWidth));  //spawn at the ground
